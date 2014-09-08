@@ -2,6 +2,7 @@
     "name": "bluemixdatacache",
     "version": "0.0.1",
     "description": "A simple library to interact with BlueMix's Data Cache service",
+    "main": "bluemix_datacache.js",
     "dependencies": {
       "request": "2.40.0"
     },
