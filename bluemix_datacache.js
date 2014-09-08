@@ -1,3 +1,4 @@
+
 // parse BlueMix  configuration from environment variables, if present
 var services = process.env.VCAP_SERVICES,
  request = require('request'),
