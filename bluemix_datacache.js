@@ -39,7 +39,13 @@ var get = function(key, callback) {
     return callback(true,null);
   }
   request(getOptions('GET', key), function(err, req, body) {
-    callback(err, JSON.parse(body));
+    try {
+      var retval = JSON.parse(body);
+      callback(err, retval);
+    } catch(e) {
+      console.log("Parse exception", body);
+      callback(err, null);
+    }
   });
 };
 
