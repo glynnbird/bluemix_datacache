@@ -13,7 +13,7 @@ if(typeof services != 'undefined') {
 // formulate the options object to be passed to request
 var getOptions = function(method, key, value) {
   var options = {
-    uri: credentials.restResource + "/" + credentials.gridName + "/" + encodeURIComponent(key),
+    uri: credentials.restResource + "/" + credentials.gridName + ".LUT.O/" + encodeURIComponent(key),
     method: method,
     auth: {
       user: credentials.username,
