@@ -2,6 +2,7 @@
 // parse BlueMix  configuration from environment variables, if present
 var services = process.env.VCAP_SERVICES,
  request = require('request'),
+ debug = require('debug')('datacache'),
  credentials = null;
  
 // load BlueMix credentials from session
@@ -21,12 +22,13 @@ var getOptions = function(method, key, value) {
     },
     json: (typeof value == 'object')?value:true
   };
+  debug(method, options);
   return options;
 }
 
 // put a new key/value pair in cache. 'value' is a JS object
 var put = function(key, value, callback) {
-  if(credentials == null) {
+  if (credentials == null) {
     return callback(true,null);
   }
   request(getOptions('POST', key, value), function(err, req, body) {
@@ -35,7 +37,7 @@ var put = function(key, value, callback) {
 };
 
 var get = function(key, callback) {
-  if(credentials == null) {
+  if (credentials == null) {
     return callback(true,null);
   }
   request(getOptions('GET', key), function(err, req, body) {
@@ -50,7 +52,7 @@ var get = function(key, callback) {
 };
 
 var remove = function(key, callback) {
-  if(credentials == null) {
+  if (credentials == null) {
     return callback(true,null);
   }
   request(getOptions('DELETE', key), function(err, req, body) {

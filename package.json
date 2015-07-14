@@ -1,16 +1,17 @@
 {
-    "name": "bluemixdatacache",
-    "version": "0.0.5",
-    "description": "A simple library to interact with BlueMix's Data Cache service",
-    "main": "bluemix_datacache.js",
-    "repository": "https://github.com/glynnbird/bluemix_datacache",
-    "keywords": [
-      "bluemix",
-      "datacache"
-    ],
-    "author": "Glynn Bird",
-    "licence": "BSD",    
-    "dependencies": {
-      "request": "2.40.0"
-    }
+  "name": "bluemixdatacache",
+  "version": "0.0.6",
+  "description": "A simple library to interact with BlueMix's Data Cache service",
+  "main": "bluemix_datacache.js",
+  "repository": "https://github.com/glynnbird/bluemix_datacache",
+  "keywords": [
+    "bluemix",
+    "datacache"
+  ],
+  "author": "Glynn Bird",
+  "licence": "BSD",
+  "dependencies": {
+    "debug": "^2.2.0",
+    "request": "2.58.0"
+  }
 }
