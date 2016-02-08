@@ -14,13 +14,13 @@ if(typeof services != 'undefined') {
 // formulate the options object to be passed to request
 var getOptions = function(method, key, value) {
   var options = {
-    uri: credentials.restResource + "/" + credentials.gridName + ".LUT.O/" + encodeURIComponent(key),
+    uri: credentials.restResourceSecure + "/" + credentials.gridName + "/" + encodeURIComponent(key),
     method: method,
     auth: {
       user: credentials.username,
       pass: credentials.password
     },
-    json: (typeof value == 'object')?value:true
+    json: (typeof value == 'object')?value:false
   };
   debug(method, options);
   return options;
@@ -45,7 +45,6 @@ var get = function(key, callback) {
       var retval = JSON.parse(body);
       callback(err, retval);
     } catch(e) {
-      console.log("Parse exception", body);
       callback(err, null);
     }
   });
