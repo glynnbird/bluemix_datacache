@@ -6,10 +6,13 @@ var services = process.env.VCAP_SERVICES,
  credentials = null;
  
 // load BlueMix credentials from session
-if(typeof services != 'undefined') {
+if (typeof services != 'undefined') {
   services = JSON.parse(services);
   credentials = services['DataCache-1.0'][0].credentials;
-} 
+  debug("Found datacache service on", credentials.restResourceSecure);
+} else {
+  throw("No 'DataCache-1.0' found in VCAP_SERVICES environment variable");
+}
 
 // formulate the options object to be passed to request
 var getOptions = function(method, key, value) {

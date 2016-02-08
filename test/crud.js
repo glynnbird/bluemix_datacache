@@ -2,7 +2,8 @@ var assert = require('assert'),
   dc = require('../bluemix_datacache.js');
   
 describe('crud tests', function() {
-
+  this.timeout(5000);
+  
   // add a key
   it('add a key', function(done) {
     dc.put("testkey", { "str":"testvalue" }, function(err, data) {
