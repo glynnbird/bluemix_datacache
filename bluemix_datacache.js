@@ -15,26 +15,38 @@ if (typeof services != 'undefined') {
 }
 
 // formulate the options object to be passed to request
-var getOptions = function(method, key, value) {
+var getOptions = function(method, key, value, ttl) {
+  var qs = null;
+  if (ttl) {
+    qs = { ttl: ttl};
+  }
   var options = {
-    uri: credentials.restResourceSecure + "/" + credentials.gridName + "/" + encodeURIComponent(key),
+    uri: credentials.restResourceSecure + "/" + credentials.gridName + ".LUT/" + encodeURIComponent(key),
     method: method,
     auth: {
       user: credentials.username,
       pass: credentials.password
     },
-    json: (typeof value == 'object')?value:false
+    json: (typeof value == 'object')?value:false,
+    qs: qs
   };
   debug(method, options);
   return options;
 }
 
 // put a new key/value pair in cache. 'value' is a JS object
-var put = function(key, value, callback) {
+var put = function(key, value, ttl, callback) {
   if (credentials == null) {
     return callback(true,null);
   }
-  request(getOptions('POST', key, value), function(err, req, body) {
+  var TTL = null;
+  if (typeof ttl == 'function') {
+    callback = ttl;
+    TTL = null;
+  } else {
+    TTL = ttl;
+  }
+  request(getOptions('POST', key, value, TTL), function(err, req, body) {
     callback(err, body);
   });
 };
